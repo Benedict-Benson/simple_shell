@@ -1,3 +1,4 @@
+#include "shell.h"
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -6,8 +7,6 @@
 #include <fcntl.h>
 #include <dirent.h>
 
-#define MAX_LENGTH 1024
-#define MAX_ARGS 64
 /**
  * parse_input -  takes the user input as a string and splits
  * it into individual arguments

@@ -1,3 +1,4 @@
+#include "shell.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.>
@@ -9,7 +10,6 @@
 #include <signal.h>
 #include <sys/stat.h>
 
-#define MAX_COMMAND_LENGTH 100
 /**
  * executeCommand -  handling the execution of commands entered by the user
  * @command:  A pointer to a string

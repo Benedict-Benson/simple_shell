@@ -1,3 +1,4 @@
+#include "shell.h"
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -6,9 +7,6 @@
 #include <fcntl.h>
 #include <dirent.h>
 #include <signal.h>
-
-#define MAX_COMMAND_LENGTH 1024
-#define MAX_ARGUMENTS 64
 
 /**
  * execute_command -  executing a single command

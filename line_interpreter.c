@@ -1,10 +1,9 @@
+#include "shell.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-
-#define MAX_COMMAND_LENGTH 100
 
 /**
  * prompt - display the shell prompt and handle user commands
@@ -69,6 +68,6 @@ void execute_command(char *command)
  */
 int main(void)
 {
-	prompt(void);
+	prompt();
 	return (0);
 }
