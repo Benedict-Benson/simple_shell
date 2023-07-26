@@ -33,7 +33,6 @@ void process_command(char *command);
 void print_prompt(void);
 void read_command(char *command);
 void parse_command(char *command, char **args);
-int execute_command(char **args);
 void parse_input(char *input, char **args);
 void execute_command(char **args);
 int command_exists(char *command, char *path);
