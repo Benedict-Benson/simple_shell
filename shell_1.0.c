@@ -28,7 +28,11 @@ int count_strings(char **array)
  */
 void print_string(char *str)
 {
-	write(STDOUT_FILENO, str, strlen(str));
+	while (*str != '\0')
+	{
+		write(STDOUT_FILENO, str, 1);
+		str++;
+	}
 }
 /**
  * print_integer - converts the integer into a string representation
@@ -65,12 +69,13 @@ void print_integer(int num)
  */
 void display_environment(char **env)
 {
-	int count = count_strings(env);
+	char **env_ptr = env;
 
-	for (int i = 0; i < count; i++)
+	while (*env_ptr != NULL)
 	{
-		print_string(env[i]);
+		print_string(*env_ptr);
 		write(STDOUT_FILENO, "\n", 1);
+		env_ptr++;
 	}
 }
 /**
@@ -79,6 +84,9 @@ void display_environment(char **env)
  */
 int main(void)
 {
+	extern char **environ;
+
+
 	display_environment(environ);
 	return (0);
 }

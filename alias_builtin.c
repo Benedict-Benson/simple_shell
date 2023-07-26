@@ -23,7 +23,7 @@ void write_string(const char *str, int out_fd)
  * @aliases: a pointer to a constant array
  * @num_aliases: an integer representing the number of aliases stored
  */
-void print_aliases(const struct * aliases, int num_aliases)
+void print_aliases(const struct Alias* aliases, int num_aliases)
 {
 	for (int i = 0; i < num_aliases; i++)
 	{
@@ -52,7 +52,7 @@ void print_aliases(const struct * aliases, int num_aliases)
  * @name: A pointer to a constant character array
  * @value: A pointer to a constant character array
  */
-void set_alias(struct * aliases, int *num_aliases,
+void set_alias(struct Alias* aliases, int *num_aliases,
 		const char *name, const char *value)
 {
 	for (int i = 0; i < *num_aliases; i++)
@@ -80,7 +80,7 @@ void set_alias(struct * aliases, int *num_aliases,
  * @aliases: a pointer to an array
  * @num_aliases: a pointer to an integer
  */
-void parse_alias_command(const char *command, struct * aliases,
+void parse_alias_command(const char *command, struct Alias* aliases,
 		int *num_aliases)
 {
 	char *token = strtok((char *)command, " ");
