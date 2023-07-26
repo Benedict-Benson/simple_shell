@@ -8,21 +8,6 @@
 #include <string.h>
 
 /**
- * count_strings -  returns the count of strings
- * @array: a pointer to a null-terminated array
- * Return: count
- */
-int count_strings(char **array)
-{
-	int count = 0;
-
-	while (array[count] != NULL)
-	{
-		count++;
-	}
-	return (count);
-}
-/**
  * print_string - writes the characters of the string
  * @str: a pointer to a null-terminated character array
  */
@@ -58,7 +43,9 @@ void print_integer(int num)
 		buf[len++] = '0' + (num % 10);
 		num /= 10;
 	}
-	for (int i = len - 1; i >= 0; i--)
+	int i;
+
+	for (i = len - 1; i >= 0; i--)
 	{
 		write(STDOUT_FILENO, &buf[i], 1);
 	}
@@ -67,9 +54,9 @@ void print_integer(int num)
  * display_environment - takes a pointer to an array of strings
  * @env: a pointer to an array of strings
  */
-void display_environment(char **env)
+void display_environment(char *envp[])
 {
-	char **env_ptr = env;
+	char **env_ptr = envp;
 
 	while (*env_ptr != NULL)
 	{
@@ -80,13 +67,13 @@ void display_environment(char **env)
 }
 /**
  * main - executes the code within its body when the program is run
+ * @argc: number of command-line arguments
+ * @argv: an array of strings
+ * @envp: an array of strings
  * Return: 0
  */
-int main(void)
+int main(int argc, char *argv[], char *envp[])
 {
-	extern char **environ;
-
-
-	display_environment(environ);
+	display_environment(envp);
 	return (0);
 }

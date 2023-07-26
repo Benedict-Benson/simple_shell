@@ -24,7 +24,7 @@ void print_prompt(void)
  */
 void read_command(char *command)
 {
-	print_prompt(void);
+	print_prompt();
 	ssize_t bytes_read = read(STDIN_FILENO, command, MAX_COMMAND_LENGTH);
 
 	if (bytes_read > 0 && command[bytes_read - 1] == '\n')
@@ -63,7 +63,7 @@ void parse_command(char *command, char **args)
  * @args: array of character pointers
  * Return: 1
  */
-int execute_command(char **args)
+void execute_command(char **args)
 {
 	pid_t pid;
 	int status;
@@ -73,7 +73,7 @@ int execute_command(char **args)
 	if (pid < 0)
 	{
 		perror("fork");
-		return (1);
+		return;
 	}
 	else if (pid == 0)
 	{
@@ -90,7 +90,6 @@ int execute_command(char **args)
 			waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
-	return (1);
 }
 /**
  * main - the entry point of the program
