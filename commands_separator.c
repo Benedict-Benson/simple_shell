@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -16,8 +17,9 @@ void execute_command(char *command)
 {
 	char *arguments[MAX_ARGUMENTS], *token = strtok(command, " \t\n");
 	int i = 0;
+	char *token = strtok(command, " \t\n");
 
-	while (token != NULL && i < MAX_arguments - 1)
+	while (token && i < MAX_ARGUMENTS - 1)
 		arguments[i++] = token, token = strtok(NULL, " \t\n");
 	arguments[i] = NULL;
 
@@ -26,7 +28,7 @@ void execute_command(char *command)
 		if (i < 2)
 			write(STDERR_FILENO, "cd: missing argument\n", 21);
 		else
-			chdir(arguments[1]) != 0 ?: perror("cd");
+			chdir(arguments[1]) == 0 ?: perror("cd");
 		return;
 	}
 	if (strcmp(arguments[0], "exit") == 0)
@@ -34,7 +36,8 @@ void execute_command(char *command)
 		write(STDOUT_FILENO, "exiting the shell...\n", 21);
 		_exit(0);
 	}
-	pid_t pid = fork();
+	pid_t pid;
+	pid = fork();
 
 	if (pid < 0)
 	{
@@ -72,7 +75,7 @@ int main(void)
 
 		char *token = strtok(command_line, ";");
 
-		while (token != NULL)
+		while (token)
 		{
 			execute_command(token);
 			token = strtok(NULL, ";");
